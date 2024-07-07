@@ -60,12 +60,15 @@ function displayForecast(data) {
         const date = new Date(forecast.dt * 1000); 
         const dateString = date.toLocaleDateString(undefined, { weekday: 'short' });
 
+  
+        const tempFahrenheit = (forecast.main.temp * 9/5) + 32;
+
         const forecastCard = document.createElement('div');
         forecastCard.classList.add('forecast-item');
         forecastCard.innerHTML = `
             <p>${dateString}</p>
             <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png" alt="weather-icon">
-            <p>Temp: ${forecast.main.temp}°C</p>
+            <p>Temp: ${tempFahrenheit.toFixed(1)}°F</p> <!-- Display temperature in Fahrenheit -->
             <p>Humidity: ${forecast.main.humidity}%</p>
             <p>Wind: ${forecast.wind.speed} m/s</p>
         `;
